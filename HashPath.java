@@ -49,23 +49,33 @@ public class HashPath {
 
     }
     visited[src] = true;
-    for (int i = 0; i < graph[src].size(); i++) {
-      Edge e = graph[src].get(i);
-      if (!visited[e.dest]) {
-        if (hashPath(graph, e.dest, dest, visited)) {
-          return true;
-        }
+
+    // for (int i = 0; i < graph[src].size(); i++) {
+    // Edge e = graph[src].get(i);
+    // if (!visited[e.dest]) {
+    // if (hashPath(graph, e.dest, dest, visited)) {
+    // return true;
+    // }
+
+    // }
+
+    // }
+    // return false;
+    for (Edge edge : graph[src]) {
+      if (!visited[edge.dest] && hashPath(graph, edge.dest, dest, visited)) {
+        return true;
 
       }
-
     }
     return false;
   }
 
+  // String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
   public static void main(String[] args) {
     int V = 7;
     int src = 0;
-    int dest = 8;
+    int dest = 4;
     ArrayList<Edge> graph[] = new ArrayList[V];
     createGraph(graph);
     boolean vis = hashPath(graph, src, dest, new boolean[V]);
