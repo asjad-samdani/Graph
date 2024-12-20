@@ -84,9 +84,6 @@ public class HashPath {
 
     } else {
       System.out.println("No path exists between " + src + " and " + dest);
-
     }
-
   }
-
 }
