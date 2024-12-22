@@ -54,15 +54,16 @@ public class Bfs {
     queue.add(0); // spurce->0
     while (!queue.isEmpty()) {
       int curr = queue.remove();
-      System.out.print("BFS Traversal: ");
       if (!visited[curr]) {
         visited[curr] = true;
-        System.out.println(curr + " ");
-        for (int i = 0; i < graph[curr].size(); i++) {
-          Edge e = graph[curr].get(i);
+        System.out.print(curr + " ");
+        // for (int i = 0; i < graph[curr].size(); i++) {
+        // Edge e = graph[curr].get(i);
+        // queue.add(e.dest);
+        // }
+        for (Edge e : graph[curr]) {
           queue.add(e.dest);
         }
-
       }
 
     }

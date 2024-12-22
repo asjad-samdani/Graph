@@ -47,9 +47,11 @@ public class CyclicDetection {
 
   static boolean detectCycleUtil(ArrayList<Edge>[] graph, boolean[] visit, int curr, int parent) {
     visit[curr] = true;
-    for (int i = 0; i < graph[curr].size(); i++) {
-      // 3 case to visit
-      Edge e = graph[curr].get(i);
+    // for (int i = 0; i < graph[curr].size(); i++) {
+    // 3 case to visit
+    // Edge e = graph[curr].get(i);
+    for (Edge e : graph[curr]) {
+
       // Case 3: Unvisited node, so we perform DFS
       if (!visit[e.dest]) {
         if (detectCycleUtil(graph, visit, e.dest, curr)) {

@@ -61,16 +61,14 @@ public class HashPath {
 
     // }
     // return false;
-    for (Edge edge : graph[src]) {
-      if (!visited[edge.dest] && hashPath(graph, edge.dest, dest, visited)) {
+    for (Edge e : graph[src]) {
+      if (!visited[e.dest] && hashPath(graph, e.dest, dest, visited)) {
         return true;
 
       }
     }
     return false;
   }
-
-  // String time = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
   public static void main(String[] args) {
     int V = 7;

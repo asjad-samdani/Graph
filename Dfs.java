@@ -48,12 +48,12 @@ public class Dfs {
     System.out.print(current + " ");
     visited[current] = true;
     // neighbours
-    for (int i = 0; i < graph[current].size(); i++) {
-      Edge e = graph[current].get(i);
+    // for (int i = 0; i < graph[current].size(); i++) {
+    // Edge e = graph[current].get(i);
+    for (Edge e : graph[current]) {
       if (!visited[e.dest]) {
         dfs(graph, e.dest, visited);
       }
-
     }
   }
 

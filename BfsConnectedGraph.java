@@ -63,8 +63,11 @@ public class BfsConnectedGraph {
         System.out.print(curr + " ");
         visit[curr] = true;
         // neigh
-        for (int i = 0; i < graph[curr].size(); i++) {
-          Edge e = graph[curr].get(i);
+        // for (int i = 0; i < graph[curr].size(); i++) {
+        // Edge e = graph[curr].get(i);
+        // queue.add(e.dest);
+        // }
+        for (Edge e : graph[curr]) {
           queue.add(e.dest);
         }
 

@@ -55,8 +55,9 @@ public class DfsConnectedGraph {
     System.out.print(curr + " ");
     vis[curr] = true;
     // neighbours
-    for (int i = 0; i < graph[curr].size(); i++) {
-      Edge e = graph[curr].get(i);
+    // for (int i = 0; i < graph[curr].size(); i++) {
+    // Edge e = graph[curr].get(i);
+    for (Edge e : graph[curr]) {
       if (!vis[e.dest]) {
         dfsUtils(graph, e.dest, vis);
 
