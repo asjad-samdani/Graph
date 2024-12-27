@@ -1,18 +1,19 @@
+package Prac;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class TopologicalSorting {
-  static class Edge {
-    int src;
-    int dest;
+class Edge {
+  int src;
+  int dest;
 
-    public Edge(int s, int d) {
-      this.dest = d;
-      this.src = s;
-
-    }
+  Edge(int s, int d) {
+    this.src = s;
+    this.dest = d;
   }
+}
 
+public class Topological {
   public static void createGraph(ArrayList<Edge> graph[]) {
     for (int i = 0; i < graph.length; i++) {
       graph[i] = new ArrayList<>();
@@ -29,20 +30,21 @@ public class TopologicalSorting {
   }
 
   public static void topSort(ArrayList<Edge> graph[], int v) {
-    boolean vis[] = new boolean[v];
+    boolean visited[] = new boolean[v];
     Stack<Integer> stack = new Stack<>();
-    for (int i = 0; i < v; i++) {
-      if (!vis[i]) {
-        topSortUtils(graph, i, vis, stack);
+    for (int i = 0; i < graph.length; i++) {
+      if (!visited[i]) {
+        topSortUtils(graph, i, visited, stack);
       }
     }
     while (!stack.isEmpty()) {
       System.out.print(stack.pop() + " ");
 
     }
+
   }
 
-  public static void topSortUtils(ArrayList<Edge>[] graph, int curr, boolean[] vis, Stack<Integer> stack) {
+  public static void topSortUtils(ArrayList<Edge> graph[], int curr, boolean[] vis, Stack<Integer> stack) {
     vis[curr] = true;
     for (Edge edge : graph[curr]) {
       if (!vis[edge.dest]) {
@@ -55,9 +57,10 @@ public class TopologicalSorting {
 
   public static void main(String[] args) {
     int V = 6;
-    ArrayList<Edge>[] graph = new ArrayList[V];
+    ArrayList<Edge> graph[] = new ArrayList[V];
     createGraph(graph);
     topSort(graph, V);
 
   }
+
 }

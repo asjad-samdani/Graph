@@ -49,7 +49,6 @@ public class HashPath {
 
     }
     visited[src] = true;
-
     // for (int i = 0; i < graph[src].size(); i++) {
     // Edge e = graph[src].get(i);
     // if (!visited[e.dest]) {
@@ -58,13 +57,11 @@ public class HashPath {
     // }
 
     // }
-
     // }
     // return false;
     for (Edge e : graph[src]) {
       if (!visited[e.dest] && hashPath(graph, e.dest, dest, visited)) {
         return true;
-
       }
     }
     return false;

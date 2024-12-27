@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 
-public class CyclicDetection {
-  static class Edge {
-    int src;
-    int dest;
+class Edge {
+  int src;
+  int dest;
 
-    public Edge(int s, int d) {
-      this.dest = d;
-      this.src = s;
-    }
+  public Edge(int s, int d) {
+    this.dest = d;
+    this.src = s;
   }
+}
+
+public class UndirectCyclicDetection {
 
   static void createGraph(ArrayList<Edge> graph[]) {
     for (int i = 0; i < graph.length; i++) {

@@ -1,6 +1,8 @@
+package Prac;
+
 import java.util.ArrayList;
 
-public class DirectedCycleConnected {
+public class DirectedCycle {
   static class Edge {
     int src;
     int dest;
@@ -11,7 +13,7 @@ public class DirectedCycleConnected {
     }
   }
 
-  public static void createGraph(ArrayList<Edge> graph[]) {// cycle not exists
+  public static void createGraph(ArrayList<Edge> graph[]) {
     for (int i = 0; i < graph.length; i++) {
       graph[i] = new ArrayList<>();
     }
@@ -25,42 +27,26 @@ public class DirectedCycleConnected {
     boolean vis[] = new boolean[graph.length];
     boolean stack[] = new boolean[graph.length];
     for (int i = 0; i < graph.length; i++) {
-      if (!vis[i]) {
-        if (isCycleDirected(graph, i, vis, stack)) {
-          return true;
-        }
-
-      }
-    }
-    return false;
-  }
-
-  public static boolean isCycleDirected(ArrayList<Edge>[] graph, int curr, boolean[] vis, boolean[] stack) {
-    vis[curr] = true;
-    stack[curr] = true;
-
-    // for (int i = 0; i < graph[curr].size(); i++) {
-    // Edge e = graph[curr].get(i);
-    // if (stack[e.dest]) {// cycle
-    // return true;
-    // }
-    // if (!vis[e.dest]) {
-    // if (isCycleUtil(graph, e.dest, vis, stack)) {
-    // return true;
-
-    // }
-
-    // }
-    // }
-    for (Edge e : graph[curr]) {
-      if (stack[e.dest] || (!vis[e.dest]) && isCycleDirected(graph, e.dest, vis, stack)) {
+      if (!vis[i] && (isCycleDirected(graph, i, vis, stack))) {
         return true;
 
       }
     }
-    stack[curr] = false;
     return false;
 
+  }
+
+  public static boolean isCycleDirected(ArrayList<Edge>[] graph, int curr, boolean vis[], boolean stack[]) {
+    vis[curr] = true;
+    stack[curr] = true;
+    for (Edge e : graph[curr]) {
+      if (stack[e.dest] || (!vis[e.dest] && isCycleDirected(graph, e.dest, vis, stack))) {
+        return true;
+      }
+
+    }
+    stack[curr] = false;
+    return false;
   }
 
   public static void main(String[] args) {
@@ -68,6 +54,7 @@ public class DirectedCycleConnected {
     ArrayList<Edge> graph[] = new ArrayList[v];
     createGraph(graph);
     System.out.println(isCycle(graph));
+
   }
 
 }
